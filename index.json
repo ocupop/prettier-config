@@ -5,7 +5,7 @@
   "semi": false,
   "singleQuote": true,
   "tabWidth": 2,
-  "trailingComma": "all",
   "write": "src/**/*.js",
-  "jsxBracketSameLine": true
+  "jsxBracketSameLine": true,
+  "trailingComma": "all"
 }
