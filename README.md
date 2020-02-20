@@ -7,7 +7,7 @@
 **Install**:
 
 ```bash
-$ yarn add --dev @ocupop/prettier-config
+$ yarn add --dev ocupop-prettier-config
 ```
 
 **Edit `package.json`**:
@@ -15,6 +15,6 @@ $ yarn add --dev @ocupop/prettier-config
 ```jsonc
 {
   // ...
-  "prettier": "@ocupop/prettier-config"
+  "prettier": "ocupop-prettier-config"
 }
 ```
