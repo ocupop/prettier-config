@@ -1,5 +1,5 @@
 {
-  "name": "prettier-config",
+  "name": "ocupop-prettier-config",
   "version": "1.0.0",
   "description": "Prettier Config setup for ocupop projects",
   "main": "index.json",
