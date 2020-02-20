@@ -18,3 +18,15 @@ $ yarn add --dev ocupop-prettier-config
   "prettier": "ocupop-prettier-config"
 }
 ```
+
+**Update**:
+```bash
+$ yarn upgrade ocupop-prettier-config
+```
+
+**publish to npm**:
+```bash
+$ npm login <login with ocupop creds>
+# Make sure to push changes to git first
+$ npm publish
+```
