@@ -7,5 +7,6 @@
   "tabWidth": 2,
   "write": "src/**/*.js",
   "jsxBracketSameLine": true,
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "disableLanguages": ["html"]
 }
