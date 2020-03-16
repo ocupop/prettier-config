@@ -1,6 +1,6 @@
 {
   "name": "ocupop-prettier-config",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Prettier Config setup for ocupop projects",
   "main": "index.json",
   "repository": "git@github.com:ocupop/prettier-config.git",

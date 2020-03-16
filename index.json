@@ -8,13 +8,7 @@
   "write": "src/**/*.js",
   "jsxBracketSameLine": true,
   "trailingComma": "none",
-  "disableLanguages": ["*.html"],
-  "overrides": [
-    {
-      "files": ["*.html"],
-      "options": {
-        "parser": "html"
-      }
-    }
-  ]
+  "cli": {
+    "ignore": ["*.html"]
+  }
 }
