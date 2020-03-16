@@ -7,8 +7,5 @@
   "tabWidth": 2,
   "write": "src/**/*.js",
   "jsxBracketSameLine": true,
-  "trailingComma": "none",
-  "cli": {
-    "ignore": ["*.html"]
-  }
+  "trailingComma": "none"
 }
