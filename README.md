@@ -35,6 +35,7 @@ $ npm publish
 https://github.com/prettier/prettier/issues/3460
 
 Currently we can't ignore files. To ignore files for now we have to:
+
 **Add .prettierignore file to root**
 ```bash
 cd <root-of-project>
