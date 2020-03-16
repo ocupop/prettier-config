@@ -7,5 +7,5 @@
   "tabWidth": 2,
   "write": "src/**/*.js",
   "jsxBracketSameLine": true,
-  "trailingComma": "all"
+  "trailingComma": "none"
 }
