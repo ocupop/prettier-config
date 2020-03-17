@@ -1,9 +1,9 @@
 {
-  "name": "ocupop-prettier-config",
-  "version": "1.0.9",
-  "description": "Prettier Config setup for ocupop projects",
-  "main": "index.json",
+  "name": "prettier-config",
+  "version": "1.0.10",
+  "description": "CLI For adding prettier config to a project",
+  "main": "index.js",
   "repository": "git@github.com:ocupop/prettier-config.git",
-  "author": "dev@ocupop.com",
+  "author": "cody@ocupop.com",
   "license": "MIT"
 }
