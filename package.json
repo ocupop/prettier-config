@@ -1,8 +1,8 @@
 {
   "name": "@ocupop/prettier-config",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "files": [
     "index.js",

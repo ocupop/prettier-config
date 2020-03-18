@@ -101,7 +101,9 @@ function removePrettier() {
   Object.entries(CONFIG_FILES).forEach(([fileName, contents]) => {
     // validate file exists
     if (fs.existsSync(fileName)) {
-      fs.unlink(fileName)
+      fs.unlink(fileName, error => {
+        // supress the error
+      })
     }
   })
 
@@ -141,8 +143,6 @@ async function init() {
   } else {
     addPrettier()
   }
-
-  return
 }
 
 init()
