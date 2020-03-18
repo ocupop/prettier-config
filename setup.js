@@ -123,8 +123,9 @@ function removePrettier() {
  * Main entry point for the application
  */
 async function init() {
-  // Check if we need to clean first
+  // Check against arugments passed in
   if (argv.remove) {
+    // validate we really want to remove everything
     await inquirer
       .prompt([
         {
