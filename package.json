@@ -1,6 +1,6 @@
 {
-  "name": "prettier-config",
-  "version": "1.0.10",
+  "name": "@ocupop/prettier-config",
+  "version": "1.0.11",
   "engines": {
     "node": ">=8"
   },
@@ -14,5 +14,8 @@
   "description": "CLI For adding prettier config to a project",
   "repository": "git@github.com:ocupop/prettier-config.git",
   "author": "cody@ocupop.com",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
 }
