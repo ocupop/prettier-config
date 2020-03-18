@@ -2,6 +2,7 @@
 const fs = require('fs')
 const yargs = require('yargs')
 const inquirer = require('inquirer')
+const childProccess = require('child_process')
 
 yargs
   .help('h')
@@ -77,7 +78,7 @@ function addPrettier() {
   fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2), 'utf8')
 
   // add packages to the project
-  require('child_process').execSync(`npm install --save-dev ${prettierPackage} prettier`, {
+  childProccess.execSync(`npm install --save-dev ${prettierPackage} prettier`, {
     stdio: 'inherit'
   })
 }
@@ -112,7 +113,7 @@ function removePrettier() {
   fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2), 'utf8')
 
   // remove the packages
-  require('child_process').execSync(`npm uninstall ${prettierPackage} prettier`, {
+  childProccess.execSync(`npm uninstall ${prettierPackage} prettier`, {
     stdio: 'inherit'
   })
 }
