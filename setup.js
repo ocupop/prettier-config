@@ -1,63 +1,121 @@
 #!/usr/bin/env node
-const fs = require("fs");
+const fs = require('fs')
+const yargs = require('yargs')
+const inquirer = require('inquirer')
+
+yargs.option('clean', {
+  describe: 'Removed prettier from application',
+  type: 'boolean',
+  alias: 'c',
+  default: false
+})
+
+const argv = yargs.argv
 
 // Validate we have a package json to work with. If not we can't do much
-if (!fs.existsSync("package.json")) {
+if (!fs.existsSync('package.json')) {
   console.error(
-    "No package.json found. Make sure you are in the project root. If no package.json exists yet, run `npm init` first."
-  );
-  process.exit(1);
+    'No package.json found. Make sure you are in the project root. If no package.json exists yet, run `npm init` first.'
+  )
+  process.exit(1)
 }
 
-// Write prettier config files
-const CONFIG_FILES = {
-"prettier.config.js": `\
- const config = require("@ocupop/prettier-config");
- module.exports = config;`,
- // @TODO: This should append
-".prettierignore": `\
-node_modules/
-# npm install does its' own formatting of the package.json and package-lock.json
-# files
-package*.json
-*.html
-`
-};
+const prettierPackage = '@ocupop/prettier-config'
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'))
+packageJson.scripts = packageJson.scripts || {}
 
-// Write files
-Object.entries(CONFIG_FILES).forEach(([fileName, contents]) => {
-  fs.writeFileSync(fileName, contents, "utf8");
-});
+// Write prettier config files
+// @TODO: This should append if files already exist
+const CONFIG_FILES = {
+  'prettier.config.js': `\
+  /**
+   * @type { import("prettier").Options }
+   */
+  module.exports = {
+    ...require('${prettierPackage}')
+    // Override the rules here...
+  }
+  `,
+  '.prettierignore': `\
+  node_modules/
+  # npm install does its' own formatting of the package.json and package-lock.json
+  # files
+  package*.json
+  *.html
+  `
+}
 
 // Update package.json scripts to run prettier against these files
-const FILE_EXTENSIONS = [
-  "js",
-  "jsx",
-  "ts",
-  "tsx",
-  "css",
-  "less",
-  "scss",
-  "graphql",
-  "yaml",
-  "yml",
-  "json",
-  "md",
-];
+const FILE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx', 'css', 'less', 'scss', 'graphql', 'yaml', 'yml', 'json', 'md']
 
+/**
+ * Adds Prettier to a project
+ */
+function addPrettier() {
+  // Write files
+  Object.entries(CONFIG_FILES).forEach(([fileName, contents]) => {
+    fs.writeFileSync(fileName, contents, 'utf8')
+  })
 
-const targetedFileBlob = `**/*.{${FILE_EXTENSIONS.join(",")}}`;
-const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8"));
+  const targetedFileBlob = `**/*.{${FILE_EXTENSIONS.join(',')}}`
 
-packageJson.scripts = packageJson.scripts || {};
-// create new nodes
-packageJson.scripts.checkFormat = `prettier --list-different '${targetedFileBlob}' `;
-packageJson.scripts.format = `prettier --write '${targetedFileBlob}' `;
-// re-write the commands to package.json
-fs.writeFileSync("package.json", JSON.stringify(packageJson, null, 2), "utf8");
+  // create new nodes
+  packageJson.scripts.checkFormat = `prettier --check '${targetedFileBlob}' `
+  packageJson.scripts.format = `prettier --write '${targetedFileBlob}' `
+  // re-write the commands to package.json
+  fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2), 'utf8')
 
-// add packages to the project
-require("child_process").execSync(
-  "npm install --save-dev @ocupop/prettier-config prettier",
-  { stdio: "inherit" },
-);
+  // add packages to the project
+  require('child_process').execSync(`npm install --save-dev ${prettierPackage} prettier`, { stdio: 'inherit' })
+}
+
+/**
+ * Removes prettier from a project
+ */
+function removePrettier() {
+  // Remove files
+  Object.entries(CONFIG_FILES).forEach(([fileName, contents]) => {
+    // validate file exists
+    if (fs.existsSync(fileName)) {
+      fs.unlink(fileName)
+    }
+  })
+
+  // clean package.json scripts
+  delete packageJson.scripts.checkFormat
+  delete packageJson.scripts.format
+
+  fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2), 'utf8')
+
+  // remove the packages
+  require('child_process').execSync(`npm uninstall ${prettierPackage} prettier`, { stdio: 'inherit' })
+}
+
+/**
+ * Main entry point for the application
+ */
+async function init() {
+  // Check if we need to clean first
+  if (argv.clean) {
+    console.log('need to clean!')
+    await inquirer
+      .prompt([
+        {
+          type: 'confirm',
+          name: 'shouldClean',
+          message: 'This will remove all prettier config and prettier ignore files, continue?'
+        }
+      ])
+      .then(value => {
+        if (value.shouldClean) {
+          removePrettier()
+        }
+      })
+  } else {
+    addPrettier()
+  }
+  
+  return;
+}
+
+init()

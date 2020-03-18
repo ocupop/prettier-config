@@ -1,6 +1,6 @@
 {
   "name": "@ocupop/prettier-config",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "engines": {
     "node": ">=8"
   },
@@ -16,6 +16,8 @@
   "author": "cody@ocupop.com",
   "license": "MIT",
   "dependencies": {
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "inquirer": "^7.1.0",
+    "yargs": "^15.3.1"
   }
 }
