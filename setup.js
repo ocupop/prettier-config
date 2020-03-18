@@ -47,8 +47,6 @@ const CONFIG_FILES = {
   `,
   '.prettierignore': `\
   node_modules/
-  # npm install does its' own formatting of the package.json and package-lock.json
-  # files
   package*.json
   *.html
   `

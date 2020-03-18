@@ -1,6 +1,6 @@
 {
   "name": "@ocupop/prettier-config",
-  "version": "1.0.19",
+  "version": "1.1.0",
   "engines": {
     "node": ">=10"
   },
