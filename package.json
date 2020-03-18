@@ -9,6 +9,7 @@
     "setup.js",
     ".prettierignore"
   ],
+  "private": false,
   "bin": "setup.js",
   "main": "index.js",
   "description": "CLI For adding prettier config to a project",
