@@ -1,8 +1,17 @@
 {
   "name": "prettier-config",
   "version": "1.0.10",
-  "description": "CLI For adding prettier config to a project",
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "index.js",
+    "setup.js",
+    ".prettierignore"
+  ],
+  "bin": "setup.js",
   "main": "index.js",
+  "description": "CLI For adding prettier config to a project",
   "repository": "git@github.com:ocupop/prettier-config.git",
   "author": "cody@ocupop.com",
   "license": "MIT"
