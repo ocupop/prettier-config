@@ -1,8 +1,8 @@
 module.exports = {
   endOfLine: "lf",
-  printWidth: 120,
-  semi: false,
-  singleQuote: true,
+  printWidth: 20,
+  semi: true,
+  singleQuote: false,
   tabWidth: 2,
   write: "src/**/*.js",
   jsxBracketSameLine: true,
