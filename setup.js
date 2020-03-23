@@ -87,7 +87,7 @@ function addPrettier() {
  * Updates the prettier packages
  */
 function upgradePrettier() {
-  require('child_process').execSync(`npm update ${prettierPackage}`, {
+  childProccess.execSync(`npm update ${prettierPackage}`, {
     stdio: 'inherit'
   })
 }
